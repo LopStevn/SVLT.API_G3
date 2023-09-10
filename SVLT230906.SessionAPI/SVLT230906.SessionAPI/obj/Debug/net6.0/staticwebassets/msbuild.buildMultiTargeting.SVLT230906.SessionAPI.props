@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SVLT230906.SessionAPI.props" />
+</Project>

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\SVLT230906.SessionAPI.props" />
+</Project>
