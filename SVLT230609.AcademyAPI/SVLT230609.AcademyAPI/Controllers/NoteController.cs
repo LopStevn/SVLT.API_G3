@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SVLT230609.AcademyAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,36 +10,31 @@ namespace SVLT230609.AcademyAPI.Controllers
     [ApiController]
     public class NoteController : ControllerBase
     {
+        static List<Note> notes = new List<Note>();
+
         // GET: api/<NoteController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [AllowAnonymous]
+        public IEnumerable<Note> Get()
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<NoteController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            return notes;
         }
 
         // POST api/<NoteController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Authorize]
+        public IActionResult Post(int id, string alum, int not, string subject)
         {
-        }
+            var note = new Note
+            {
+                Id = id,
+                Alum = alum,
+                not = not,
+                Subjet = subject
+            };
 
-        // PUT api/<NoteController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<NoteController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            notes.Add(note);
+            return Ok();
         }
     }
 }

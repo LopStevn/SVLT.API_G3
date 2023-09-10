@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SVLT230609.AcademyAPI.props" />
+</Project>
